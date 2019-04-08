@@ -78,7 +78,8 @@ export default class TagViewer extends React.Component {
             className="btn btn-default btn-tag"
             style={tagEditorButtonStyle}
           >
-            <TagLabel currentPageTags={this.state.currentPageTags} />{this.state.currentPageTags.length}
+            <TagLabel currentPageTags={this.state.currentPageTags} />
+            {/* {this.state.currentPageTags.length} */}
           </Button>
         </OverlayTrigger>
         <Modal show={this.state.isOpenModal} onHide={this.handleCloseModal} id="editTagModal">
