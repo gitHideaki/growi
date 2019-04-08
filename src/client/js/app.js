@@ -290,7 +290,7 @@ if (!pageRevisionId && draft != null) {
  */
 const componentMappings = {
   'search-top': <I18nextProvider i18n={i18n}><HeaderSearchBox crowi={crowi} /></I18nextProvider>,
-  'search-sidebar': <HeaderSearchBox crowi={crowi} />,
+  'search-sidebar': <I18nextProvider i18n={i18n}><HeaderSearchBox crowi={crowi} /></I18nextProvider>,
   'search-page': <I18nextProvider i18n={i18n}><SearchPage crowi={crowi} crowiRenderer={crowiRenderer} /></I18nextProvider>,
 
   // 'revision-history': <PageHistory pageId={pageId} />,
@@ -371,7 +371,7 @@ if (savePageControlsElem) {
         onSubmit={saveWithSubmitButton}
         ref={(elem) => {
             if (savePageControls == null) {
-              savePageControls = elem.getWrappedInstance();
+              savePageControls = elem;
             }
           }}
         pageId={pageId}
@@ -432,18 +432,25 @@ const previewOptions = new PreviewOptions(crowi.previewOptions);
 // render PageEditor
 const pageEditorElem = document.getElementById('page-editor');
 if (pageEditorElem) {
-  pageEditor = ReactDOM.render(
-    <PageEditor
-      crowi={crowi}
-      crowiRenderer={crowiRenderer}
-      pageId={pageId}
-      revisionId={pageRevisionId}
-      pagePath={pagePath}
-      markdown={markdown}
-      editorOptions={editorOptions}
-      previewOptions={previewOptions}
-      onSaveWithShortcut={saveWithShortcut}
-    />,
+  ReactDOM.render(
+    <I18nextProvider i18n={i18n}>
+      <PageEditor
+        ref={(elem) => {
+          if (pageEditor == null) {
+            pageEditor = elem;
+          }
+        }}
+        crowi={crowi}
+        crowiRenderer={crowiRenderer}
+        pageId={pageId}
+        revisionId={pageRevisionId}
+        pagePath={pagePath}
+        markdown={markdown}
+        editorOptions={editorOptions}
+        previewOptions={previewOptions}
+        onSaveWithShortcut={saveWithShortcut}
+      />
+    </I18nextProvider>,
     pageEditorElem,
   );
   componentInstances.pageEditor = pageEditor;
@@ -507,7 +514,7 @@ if (pageStatusAlertElem) {
       <PageStatusAlert
         ref={(elem) => {
             if (pageStatusAlert == null) {
-              pageStatusAlert = elem.getWrappedInstance();
+              pageStatusAlert = elem;
             }
           }}
         revisionId={pageRevisionId}
