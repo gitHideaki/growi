@@ -59,6 +59,7 @@ export default class TagViewer extends React.Component {
     const tagEditorButtonStyle = {
       marginLeft: '0.2em',
       padding: '0 2px',
+      display: 'flex',
     };
 
     return (
@@ -72,15 +73,17 @@ export default class TagViewer extends React.Component {
             </Tooltip>
           )}
         >
-          <Button
-            variant="primary"
-            onClick={this.handleShowModal}
-            className="btn btn-default btn-tag"
-            style={tagEditorButtonStyle}
-          >
-            <i className="fa fa-tags"></i><TagLabel currentPageTags={this.state.currentPageTags} />
-            {/* {this.state.currentPageTags.length} */}
-          </Button>
+          <div style={tagEditorButtonStyle}>
+            <Button
+              variant="primary"
+              onClick={this.handleShowModal}
+              className="btn btn-default btn-tag"
+            >
+              <i className="fa fa-tags"></i>
+              {this.state.currentPageTags.length}
+            </Button>
+            <TagLabel currentPageTags={this.state.currentPageTags} />
+          </div>
         </OverlayTrigger>
         <Modal show={this.state.isOpenModal} onHide={this.handleCloseModal} id="editTagModal">
           <Modal.Header closeButton className="bg-primary">
