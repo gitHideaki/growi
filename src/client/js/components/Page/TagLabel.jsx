@@ -8,23 +8,22 @@ export default class TagLabel extends React.Component {
     const tagListstyle = {
       borderRadius: '5px',
       marginLeft: '5px',
-      fontSize: '12px',
+      fontSize: '13px',
       height: '20px',
       padding: '0px 10px',
-      zIndex: '-10',
     };
-
-    if (this.props.currentPageTags.length === 0) {
-      return (
-        <div style={tagListstyle}>
-        tag is not set
-        </div>
-      );
-    }
 
     for (let i = 0; i < this.props.currentPageTags.length; i++) {
       tags.push(
         <li style={tagListstyle} key={i.toString()} className="btn btn-info">{this.props.currentPageTags[i]}</li>,
+      );
+    }
+
+    if (this.props.currentPageTags.length === 0) {
+      tags.push(
+        <li style={tagListstyle}>
+        tag is not set
+        </li>,
       );
     }
 
@@ -39,12 +38,6 @@ export default class TagLabel extends React.Component {
         </ul>
       </div>
     );
-
-    // return (
-    //   <div>
-    //     {tags}
-    //   </div>
-    // );
   }
 
 }
