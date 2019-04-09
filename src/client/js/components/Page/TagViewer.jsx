@@ -64,27 +64,16 @@ export default class TagViewer extends React.Component {
 
     return (
       <span className="btn-tag-container">
-        <OverlayTrigger
-          key="tooltip"
-          placement="bottom"
-          overlay={(
-            <Tooltip id="tag-edit-button-tooltip" className="tag-tooltip">
-              {this.state.currentPageTags.length !== 0 ? this.state.currentPageTags.join() : 'tag is not set' }
-            </Tooltip>
-          )}
-        >
-          <div style={tagEditorButtonStyle}>
-            <Button
-              variant="primary"
-              onClick={this.handleShowModal}
-              className="btn btn-default btn-tag"
-            >
-              <i className="fa fa-tags"></i>
-              {this.state.currentPageTags.length}
-            </Button>
-            <TagLabel currentPageTags={this.state.currentPageTags} />
-          </div>
-        </OverlayTrigger>
+        <div style={tagEditorButtonStyle}>
+          <Button
+            variant="primary"
+            onClick={this.handleShowModal}
+            className="btn btn-default btn-tag"
+          >
+            <i className="fa fa-tags"></i>{this.state.currentPageTags.length}
+          </Button>
+          <TagLabel currentPageTags={this.state.currentPageTags} />
+        </div>
         <Modal show={this.state.isOpenModal} onHide={this.handleCloseModal} id="editTagModal">
           <Modal.Header closeButton className="bg-primary">
             <Modal.Title className="text-white">Page Tag</Modal.Title>

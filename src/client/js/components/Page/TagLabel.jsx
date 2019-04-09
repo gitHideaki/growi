@@ -7,10 +7,11 @@ export default class TagLabel extends React.Component {
     const tags = [];
     const tagListstyle = {
       borderRadius: '5px',
-      marginRight: '5px',
+      marginLeft: '5px',
       fontSize: '12px',
       height: '20px',
       padding: '0px 10px',
+      zIndex: '-10',
     };
 
     if (this.props.currentPageTags.length === 0) {
@@ -23,14 +24,27 @@ export default class TagLabel extends React.Component {
 
     for (let i = 0; i < this.props.currentPageTags.length; i++) {
       tags.push(
-        <div style={tagListstyle} key={i.toString()} className="btn btn-info">{this.props.currentPageTags[i]}</div>,
+        <li style={tagListstyle} key={i.toString()} className="btn btn-info">{this.props.currentPageTags[i]}</li>,
       );
     }
+
     return (
-      <div>
-        {tags}
+      <div className="dropdown">
+        <button className="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">
+          タグ一覧
+          <span className="caret"></span>
+        </button>
+        <ul className="dropdown-menu" role="menu">
+          {tags}
+        </ul>
       </div>
     );
+
+    // return (
+    //   <div>
+    //     {tags}
+    //   </div>
+    // );
   }
 
 }
