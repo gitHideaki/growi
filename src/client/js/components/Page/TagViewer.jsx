@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/es/Button';
-import OverlayTrigger from 'react-bootstrap/es/OverlayTrigger';
-import Tooltip from 'react-bootstrap/es/Tooltip';
 import Modal from 'react-bootstrap/es/Modal';
 import TagLabel from './TagLabel';
 import PageTagForm from '../PageTagForm';
@@ -63,6 +61,7 @@ export default class TagViewer extends React.Component {
 
     return (
       <span className="btn-tag-container">
+<<<<<<< HEAD
         <OverlayTrigger
           key="tooltip"
           placement="bottom"
@@ -72,16 +71,27 @@ export default class TagViewer extends React.Component {
             </Tooltip>
           )}
         >
+=======
+        <div style={tagEditorButtonStyle}>
+>>>>>>> 7179b248a088678d0a5875c9ccff198c1a92f1f7
           <Button
             variant="primary"
             onClick={this.handleShowModal}
             className="btn btn-default btn-tag"
+<<<<<<< HEAD
             style={tagEditorButtonStyle}
           >
             <i className="fa fa-tags"></i><TagLabel currentPageTags={this.state.currentPageTags} />
             {/* {this.state.currentPageTags.length} */}
           </Button>
         </OverlayTrigger>
+=======
+          >
+            <i className="fa fa-tags"></i>{this.state.currentPageTags.length}
+          </Button>
+          <TagLabel currentPageTags={this.state.currentPageTags} />
+        </div>
+>>>>>>> 7179b248a088678d0a5875c9ccff198c1a92f1f7
         <Modal show={this.state.isOpenModal} onHide={this.handleCloseModal} id="editTagModal">
           <Modal.Header closeButton className="bg-primary">
             <Modal.Title className="text-white">Page Tag</Modal.Title>
