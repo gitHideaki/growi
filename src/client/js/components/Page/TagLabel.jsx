@@ -4,31 +4,26 @@ import PropTypes from 'prop-types';
 export default class TagLabel extends React.Component {
 
   render() {
-    const tags = [];
-    const tagListstyle = {
-      borderRadius: '5px',
-      marginRight: '5px',
-      fontSize: '12px',
-      height: '20px',
-      padding: '0px 10px',
-    };
-
     if (this.props.currentPageTags.length === 0) {
       return (
-        <div style={tagListstyle}>
+        <li>
         tag is not set
-        </div>
+        </li>
       );
     }
 
+    const tags = [];
     for (let i = 0; i < this.props.currentPageTags.length; i++) {
       tags.push(
-        <div style={tagListstyle} key={i.toString()} className="btn btn-info">{this.props.currentPageTags[i]}</div>,
+        <li key={i.toString()} className="label label-info">{this.props.currentPageTags[i]}</li>,
       );
     }
     return (
       <div>
-        {tags}
+        <ul>
+          {tags}
+        </ul>
+
       </div>
     );
   }
