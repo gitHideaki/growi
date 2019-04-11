@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import CopyButton from '../CopyButton';
+import TagLabel from './TagLabel';
 
 export default class RevisionUrl extends React.Component {
 
@@ -13,11 +14,13 @@ export default class RevisionUrl extends React.Component {
   }
 
   render() {
-    const buttonStyle = {
+    const revisionStyle = {
       fontSize: '1em',
+      float: 'left',
     };
 
     const pagePath = this.xss.process(this.props.pagePath);
+    const sendTagData = this.xss.process(this.props.setTagData);
 
     const url = (this.props.pageId == null)
       ? decodeURIComponent(window.location.href)
@@ -25,16 +28,18 @@ export default class RevisionUrl extends React.Component {
     const copiedText = `${pagePath}\n${url}`;
 
     return (
-      <span>
-        {url}
-        <CopyButton
-          buttonId="btnCopyRevisionUrl"
-          text={copiedText}
-          buttonClassName="btn btn-default btn-copy-link"
-          buttonStyle={buttonStyle}
-          iconClassName="ti-clipboard"
-        />
-      </span>
+      <div>
+        <span style={revisionStyle}>
+          {url}
+          <CopyButton
+            buttonId="btnCopyRevisionUrl"
+            text={copiedText}
+            buttonClassName="btn btn-default btn-copy-link"
+            iconClassName="ti-clipboard"
+          />
+        </span>
+        <TagLabel currentPageTags={sendTagData} />
+      </div>
     );
   }
 
@@ -43,4 +48,5 @@ export default class RevisionUrl extends React.Component {
 RevisionUrl.propTypes = {
   pageId: PropTypes.string,
   pagePath: PropTypes.string.isRequired,
+  setTagData: PropTypes.array.isRequired,
 };

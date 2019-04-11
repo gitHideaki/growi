@@ -5,25 +5,44 @@ export default class TagLabel extends React.Component {
 
   render() {
     const tags = [];
-    const tagListstyle = {
+    const tagStyle = {
       borderRadius: '5px',
       marginLeft: '5px',
-      fontSize: '12px',
-      height: '20px',
-      padding: '0px 10px',
+      padding: '2px 5px',
+      // fontSize: '1rem',
     };
+
+    // if (this.props.currentPageTags.length === 0) {
+    //   return (
+    //     <div style={tagListstyle}>
+    //     tag is not set
+    //     </div>
+    //   );
+    // }
 
     if (this.props.currentPageTags.length === 0) {
       return (
-        <div style={tagListstyle}>
-        tag is not set
+        <div>
+          <div style={tagStyle} className="btn btn-info">
+            wiki
+          </div>
+          <div style={tagStyle} className="btn btn-info">
+            test
+          </div>
+          <div style={tagStyle} className="btn btn-info">
+            local
+          </div>
+          <div style={tagStyle} className="btn btn-info">
+            今日の一言
+          </div>
         </div>
+
       );
     }
 
     for (let i = 0; i < this.props.currentPageTags.length; i++) {
       tags.push(
-        <div style={tagListstyle} key={i.toString()} className="label label-info">{this.props.currentPageTags[i]}</div>,
+        <div key={i.toString()} className="btn btn-info">{this.props.currentPageTags[i]}</div>,
       );
     }
 

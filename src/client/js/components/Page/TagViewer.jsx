@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/es/Button';
 import OverlayTrigger from 'react-bootstrap/es/OverlayTrigger';
 import Tooltip from 'react-bootstrap/es/Tooltip';
 import Modal from 'react-bootstrap/es/Modal';
-import TagLabel from './TagLabel';
 import PageTagForm from '../PageTagForm';
 
 /**
@@ -79,8 +78,8 @@ export default class TagViewer extends React.Component {
             className="btn btn-default btn-tag"
             style={tagEditorButtonStyle}
           >
-            <i className="fa fa-tags"></i><TagLabel currentPageTags={this.state.currentPageTags} />
-            {/* {this.state.currentPageTags.length} */}
+            <i className="fa fa-tags"></i>
+            {this.state.currentPageTags.length}
           </Button>
         </OverlayTrigger>
         <Modal show={this.state.isOpenModal} onHide={this.handleCloseModal} id="editTagModal">
